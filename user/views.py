@@ -24,6 +24,9 @@ def userLogin(request):
             messages.info(request, 'Username OR password is incorrect!')
     return render(request, 'login.html')
 
+def userLogout(request):
+    logout(request)
+    return redirect('login')
 
 def userRegister(request):
     form = CreateUserForm()
