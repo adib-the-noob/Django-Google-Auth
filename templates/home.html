@@ -7,12 +7,28 @@
     <title>Home</title>
 </head>
 <body>
-    <p>
+    <h1 id="header">
         You Have been logged in!
-    </p>
+    </h1>
     <p class="hello">
-        Hello, {{request.user}}
+        Hello, <strong>{{request.user}}</strong>
     </p>
-    <a href="{% url 'logout'%}">Logout</a>
+    <a id="btn" href="{% url 'logout'%}">Logout</a>
+    <style>
+        .hello{
+            font-size: larger;
+
+        }#header{
+            color: blue;
+            align-items: center;
+        }#btn{
+            background-color: red;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+    </style>
 </body>
 </html>

@@ -75,6 +75,18 @@
 			color: #fff;
 			padding: 10px;
 			margin-top: 10px;
+		}#google-btn{
+			background-color: #fff;
+			color: #000;
+			display: flex;
+			justify-content: center;
+			padding: 7px;
+			margin-top: 10px;
+			border-radius: 5px;
+		}#or{	
+			color: white;
+			display: flex;
+			justify-content: center;
 		}
 	</style>
 
@@ -104,8 +116,9 @@
 								<input type="password" name="password" placeholder="Password..." class="form-control" >
 						</div>	
 						
-						
-						<a href="{% provider_login_url 'google' method="oauth2" %}">Google</a>
+						<h6 id='or'>Or</h6>
+						<hr>
+						<a id="google-btn" href="{% provider_login_url 'google' method="oauth2" %}">Sign in with Google</a>
 
 							<div class="d-flex justify-content-center mt-3 login_container">
 				 				<input class="btn login_btn" type="submit" value="Login">
