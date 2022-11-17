@@ -1,16 +1,15 @@
-from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
-
+from django.shortcuts import render,redirect
+from .forms import CreateUserForm
 # Create your views here.
 
 def userLogin(request):
     return render(request, 'login.html')
 
 def userRegister(request):
-    form = UserCreationForm()
+    form = CreateUserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
 
