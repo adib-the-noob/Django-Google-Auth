@@ -3,11 +3,17 @@ from .forms import CreateUserForm
 from django.contrib import messages
 
 from django.contrib.auth import authenticate, login, logout 
+
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
-
+@login_required(login_url='login')
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        return render(request, 'home.html')
+    else:
+        return redirect('login')
 
 
 def userLogin(request):
@@ -24,20 +30,24 @@ def userLogin(request):
             messages.info(request, 'Username OR password is incorrect!')
     return render(request, 'login.html')
 
+@login_required(login_url='login')
 def userLogout(request):
     logout(request)
     return redirect('login')
 
 def userRegister(request):
     form = CreateUserForm()
+    if request.user.is_authenticated:
+        return redirect('home')        
 
-    if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, 'Account was created for ' + user)
-            return redirect('login')
-
-    context = {'form':form}
-    return render(request, 'register.html', context)
+    else:
+        if request.method == 'POST':
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request, 'Account was created for ' + user)
+                return redirect('login')
+        form = CreateUserForm()
+        context = {'form':form}
+        return render(request, 'register.html', context)
