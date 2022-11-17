@@ -7,8 +7,12 @@
     <title>Register</title>
 </head>
 <body>
-    <p>
-    This is a Register Page
-    </p>
+
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Create User">
+    </form>
+
 </body>
 </html>
