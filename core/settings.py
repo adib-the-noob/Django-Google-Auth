@@ -148,7 +148,8 @@ SOCIALACCOUNT_PROVIDERS = {
             'client_id': '792825936026-c137k01n3r7pub3mo21oiiva69v8mo2e.apps.googleusercontent.com',
             'secret': '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',
             'key': ''
-        }
+        },
+        'OAUTH_PKCE_ENABLED': True,
     }
 }
 
@@ -159,3 +160,7 @@ LOGOUT_REDIRECT_URL = '/login'
 SOCIALACCOUNT_STORE_TOKENS = True
 SOCIALACCOUNT_AUTO_SIGNUP = True
 
+AUTH_USER_MODEL = 'user.User'
+
+
+MEDIA_URL = 'media/'
